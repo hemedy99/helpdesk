@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -24,10 +25,10 @@ import lombok.NonNull;
 public class Ministry {
     
   @Id
-  @GeneratedValue(generator = "UUID")
-  @GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ministry_id_sequence")
+  @SequenceGenerator(name = "ministry_id", sequenceName = "ministry_id_sequence",initialValue = 1, allocationSize = 1)
   @Column(name = "ministry_id", updatable = false, nullable = false)
-  private String id; 
+  private Long id;
 
   @NotNull
   @NonNull

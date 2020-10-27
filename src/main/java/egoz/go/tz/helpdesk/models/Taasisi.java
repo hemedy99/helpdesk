@@ -3,9 +3,11 @@ package egoz.go.tz.helpdesk.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -23,11 +25,13 @@ import lombok.NonNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Taasisi {
-    @Id
-  @GeneratedValue(generator = "UUID")
-  @GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "taasisi_id_sequence")
+  @SequenceGenerator(name = "taasisi_id", sequenceName = "taasisi_id_sequence",
+      initialValue = 1, allocationSize = 1)
   @Column(name = "taasisi_id", updatable = false, nullable = false)
-  private String id; 
+  private Long id;
 
   @NotNull
   @NonNull

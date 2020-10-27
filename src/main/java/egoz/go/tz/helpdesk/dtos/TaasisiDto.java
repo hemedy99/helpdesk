@@ -1,7 +1,6 @@
 package egoz.go.tz.helpdesk.dtos;
 
-import javax.validation.constraints.NotNull;
-
+import egoz.go.tz.helpdesk.models.Ministry;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MinistryDto {
-
-private Long id;
-private String ministryName;
-    
+public class TaasisiDto {
+    private Long id;
+    private String taasisiName;
+    private Ministry ministry;
 }

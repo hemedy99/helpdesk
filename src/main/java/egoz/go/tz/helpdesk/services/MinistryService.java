@@ -36,13 +36,13 @@ public class MinistryService {
 		return ministryRepo.findAll(pagerequest).getContent();
     }
  
-    public Optional<Ministry> getMinistryById(String id)  {
+    public Optional<Ministry> getMinistryById(Long id)  {
 		Optional<Ministry> min = ministryRepo.findById(id);
 		return min;
   }
   
 
-  public Ministry updateMinistry(String id, Ministry min)throws NotFoundException{
+  public Ministry updateMinistry(Long id, Ministry min)throws NotFoundException{
     Ministry ministry = ministryRepo.findById(id).orElseThrow(() -> new NotFoundException("Ministry not found"));
   
     ModelMapper modelMapper = new ModelMapper();
@@ -53,7 +53,7 @@ public class MinistryService {
 return ministry;
 }
 
-public Ministry delete(String id) throws NotFoundException {
+public Ministry delete(Long id) throws NotFoundException {
   Ministry min = ministryRepo.findById(id)
       .orElseThrow(() -> new NotFoundException("Ministry not found"));
 

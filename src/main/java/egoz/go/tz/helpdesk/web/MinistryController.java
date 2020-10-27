@@ -13,8 +13,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
-import egoz.go.tz.helpdesk.dtos.ApiResponse;
 import egoz.go.tz.helpdesk.dtos.MinistryDto;
 import egoz.go.tz.helpdesk.exceptions.NotFoundException;
 import egoz.go.tz.helpdesk.models.Ministry;
@@ -46,7 +44,7 @@ public class MinistryController implements MinistryApi {
     
 
     @Override
-	public ResponseEntity<MinistryDto>getMinistry(String id)throws NotFoundException, JsonProcessingException {
+	public ResponseEntity<MinistryDto>getMinistry(Long id)throws NotFoundException, JsonProcessingException {
         Optional<Ministry> min = ministryService.getMinistryById(id);
         if(!min.isPresent()){
           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -58,7 +56,7 @@ public class MinistryController implements MinistryApi {
     }
     
     @Override
-    public ResponseEntity<MinistryDto> updateMinistry(String id, MinistryDto minDto)
+    public ResponseEntity<MinistryDto> updateMinistry(Long id, MinistryDto minDto)
         throws NotFoundException {
       ModelMapper modelMapper = new ModelMapper();
       modelMapper.getConfiguration().setFieldMatchingEnabled(true).setAmbiguityIgnored(true);
@@ -70,7 +68,7 @@ public class MinistryController implements MinistryApi {
     }
   
     @Override
-	public ResponseEntity<MinistryDto> deleteMinistry(String id)
+	public ResponseEntity<MinistryDto> deleteMinistry(Long id)
 			throws NotFoundException {
     Ministry min = ministryService.delete(id);
     ModelMapper modelMapper = new ModelMapper();
