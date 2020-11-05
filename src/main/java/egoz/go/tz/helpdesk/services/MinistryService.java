@@ -24,12 +24,8 @@ public class MinistryService {
     private MinistryRepository ministryRepo;
 
 
-    public Ministry saveMinistry(@Valid MinistryDto ministryDto)  {
-      ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setAmbiguityIgnored(true);
-        Ministry min = modelMapper.map(ministryDto,Ministry.class);
-        min = ministryRepo.save(min);
-      return min;
+    public Ministry saveMinistry(@Valid Ministry ministry)  {
+      return ministryRepo.save(ministry);
     }
   
     public List<Ministry> getMinistries(Pageable pagerequest) {
@@ -41,17 +37,6 @@ public class MinistryService {
 		return min;
   }
   
-
-  public Ministry updateMinistry(Long id, Ministry min)throws NotFoundException{
-    Ministry ministry = ministryRepo.findById(id).orElseThrow(() -> new NotFoundException("Ministry not found"));
-  
-    ModelMapper modelMapper = new ModelMapper();
-    modelMapper.getConfiguration().setAmbiguityIgnored(true);
-    ministry = modelMapper.map(min, Ministry.class);
-    ministry = ministryRepo.save(ministry);
-
-return ministry;
-}
 
 public Ministry delete(Long id) throws NotFoundException {
   Ministry min = ministryRepo.findById(id)

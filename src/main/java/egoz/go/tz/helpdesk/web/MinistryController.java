@@ -27,11 +27,12 @@ public class MinistryController implements MinistryApi {
 
     @Override
     public ResponseEntity<MinistryDto>saveMinistry(@Valid MinistryDto ministryDto){
-        Ministry min = ministryService.saveMinistry(ministryDto);
+        
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setFieldMatchingEnabled(true).setAmbiguityIgnored(true);
-        MinistryDto minDto = modelMapper.map(min,MinistryDto.class);
-		return  ResponseEntity.ok(minDto);
+        Ministry min = modelMapper.map(ministryDto,Ministry.class);
+        ministryService.saveMinistry(min);
+		return  ResponseEntity.ok(ministryDto);
     }
 
 
@@ -58,13 +59,22 @@ public class MinistryController implements MinistryApi {
     @Override
     public ResponseEntity<MinistryDto> updateMinistry(Long id, MinistryDto minDto)
         throws NotFoundException {
-      ModelMapper modelMapper = new ModelMapper();
-      modelMapper.getConfiguration().setFieldMatchingEnabled(true).setAmbiguityIgnored(true);
-      Ministry min = modelMapper.map(minDto,Ministry.class);   
       
-     Ministry ministry = ministryService.updateMinistry(id, min);
-     MinistryDto mDto = modelMapper.map(ministry,MinistryDto.class);  
-      return ResponseEntity.ok(mDto);
+      Optional<Ministry> mn = ministryService.getMinistryById(id);
+      if(!mn.isPresent()){
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+     }else{
+
+      Ministry oldMin = mn.get();
+      oldMin.setMinistryName(minDto.getMinistryName());
+     ministryService.saveMinistry(oldMin);
+     ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setFieldMatchingEnabled(true).setAmbiguityIgnored(true);
+        MinistryDto minDt = modelMapper.map(oldMin,MinistryDto.class);
+      return ResponseEntity.ok(minDt);
+     }
+
+     
     }
   
     @Override
