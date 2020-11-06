@@ -1,5 +1,7 @@
 package egoz.go.tz.helpdesk.models;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +18,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import egoz.go.tz.helpdesk.enums.UserStateEnum;
@@ -73,6 +76,13 @@ public class User {
 	@EqualsAndHashCode.Exclude
 	@lombok.ToString.Exclude
     private Taasisi taasisi;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")	
+     @JsonManagedReference(value="user")
+       @EqualsAndHashCode.Exclude
+       @lombok.ToString.Exclude
+       @JsonIgnore
+     private Set<Request> requests ;
 
 
      

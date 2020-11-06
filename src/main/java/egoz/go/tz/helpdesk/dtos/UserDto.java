@@ -1,10 +1,13 @@
 package egoz.go.tz.helpdesk.dtos;
 
+import java.util.Set;
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import egoz.go.tz.helpdesk.enums.UserStateEnum;
 import egoz.go.tz.helpdesk.enums.UserTypeEnum;
+import egoz.go.tz.helpdesk.models.Request;
 import egoz.go.tz.helpdesk.models.Taasisi;
 import lombok.Data;
 
@@ -22,4 +25,5 @@ public class UserDto {
     @Enumerated(EnumType.STRING)
     private UserStateEnum userState ;
     private Taasisi taasisi;
+    private Set<Request> requests ;
 }
