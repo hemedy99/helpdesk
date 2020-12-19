@@ -1,6 +1,6 @@
-package egoz.go.tz.helpdesk.dtos;
+package egoz.go.tz.helpdesk.dtos.Taasisi;
 
-import egoz.go.tz.helpdesk.models.Ministry;
+import egoz.go.tz.helpdesk.dtos.Ministry.MinistryDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class TaasisiDto {
     private Long id;
     private String taasisiName;
-    private Ministry ministry;
+    private MinistryDto ministry;
 }

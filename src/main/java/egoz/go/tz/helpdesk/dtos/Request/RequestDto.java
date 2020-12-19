@@ -1,4 +1,4 @@
-package egoz.go.tz.helpdesk.dtos;
+package egoz.go.tz.helpdesk.dtos.Request;
 
 import java.time.LocalDateTime;
 

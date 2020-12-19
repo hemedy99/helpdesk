@@ -4,12 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import egoz.go.tz.helpdesk.exceptions.NotFoundException;
 import egoz.go.tz.helpdesk.models.User;
 import egoz.go.tz.helpdesk.repository.UserRepository;
 
@@ -31,10 +28,7 @@ public class UserService {
 		return user;
     }
 
-    public User delete(Long id) throws NotFoundException {
-        User user = userRepo.findById(id)
-            .orElseThrow(() -> new NotFoundException("User not found"));
-      
+    public User delete(User user) {
             userRepo.delete(user);
         return user;
       }

@@ -1,10 +1,8 @@
-package egoz.go.tz.helpdesk.dtos;
+package egoz.go.tz.helpdesk.dtos.Ministry;
 
 import java.util.Set;
 
-import javax.validation.constraints.NotNull;
-
-import egoz.go.tz.helpdesk.models.Taasisi;
+import egoz.go.tz.helpdesk.dtos.Taasisi.TaasisiDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +14,6 @@ public class MinistryDto {
 
 private Long id;
 private String ministryName;
-private Set<Taasisi> taasisi;
+private Set<TaasisiDto> taasisi;
     
 }

@@ -4,13 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import egoz.go.tz.helpdesk.dtos.TaasisiDto;
 import egoz.go.tz.helpdesk.exceptions.NotFoundException;
 import egoz.go.tz.helpdesk.models.Taasisi;
 import egoz.go.tz.helpdesk.repository.TaasisiRepository;
@@ -34,9 +31,7 @@ public class TaasisiService {
       }
       
     
-    public Taasisi delete(Long id) throws NotFoundException {
-      Taasisi tas = taasisiRepo.findById(id)
-          .orElseThrow(() -> new NotFoundException("Taasisi not found"));
+    public Taasisi delete(Taasisi tas)  {
           taasisiRepo.delete(tas);
       return tas;
     }

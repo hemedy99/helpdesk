@@ -66,6 +66,10 @@ public class RequestService {
 
 }
 
+public List<Request> getAllRequest(Pageable pagerequest) {
+  return requestRepo.findAll(pagerequest).getContent();
+  }
+
    public Request saveRequest(@Valid Request request)  {
     return requestRepo.save(request);
     }
